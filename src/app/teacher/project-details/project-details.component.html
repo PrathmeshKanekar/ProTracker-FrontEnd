@@ -1,0 +1,60 @@
+<nav class="navbar navbar-light bg-light m-2">
+  <h1 class="h2 ps-1 page-title"><strong>Project Details</strong></h1>
+</nav>
+<main class="content">
+  <div class="row p-3 bg-white">
+    <!-- <div class="col-md-4">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-control" formControlName="businessname" />
+        </div> -->
+    <div class="col-md-12">
+      <div class="text-end mb-3">
+        <!-- <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target=".teachers" (click)="add_teacher()">
+            <i class="fa fa-plus" aria-hidden="true"></i><span class="ps-2">Add Teacher</span>
+          </button> -->
+      </div>
+      <table class="table table-bordered table-hover border-dark shadow-lg p-3 mb-5">
+        <thead>
+          <tr>
+            <th style="width: 100px">Sr.No</th>
+            <th style="width: 100px"> Group No</th>
+            <th style="width: 100px">Image</th>
+            <th style="width: 100px">Date</th>
+            <th style="width: 100px">Discription</th>
+            <th style="width: 100px">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of Project_data; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ data.group_no }}</td>
+            <td><img src="data:image/png;base64,{{data.image_data}}" alt="img here" class="w-25" alt="Clickable Image"
+                id="showImageButton"></td>
+            <td>{{ data.date_time }}</td>
+            <td>{{ data.details }}</td>
+            <td> <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                [attr.data-bs-target]="'#teachers' + i">
+                <span class="ps-2">Preview</span>
+              </button>
+              <button type="button" class="btn btn-danger btn-sm ms-2" (click)="deletedata(data.id)">Delete</button>
+            </td>
+            <div class="modal fade teachers" [id]="'teachers' + i" tabindex="-1" role="dialog"
+              aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h2 class="modal-title fw-bold">Image Preview</h2>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <img src="data:image/png;base64,{{data.image_data}}" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>

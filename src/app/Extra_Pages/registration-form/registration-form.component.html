@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="container shadow-sm p-3 mb-5 bg-white rounded mt-5  p-2">
+
+        <div class="mb-2 "><img src="../../../assets/img/photos/clg.jpg" alt="" class="img-fluid"></div>
+        <h1 class="mb-3 text-center font-weight-bold">Student Registration</h1>
+        <form class="p-4 bg-white" [formGroup]="form_data"  (ngSubmit)="save(form_data.value)">
+
+          <div class="mb-3">
+            <label class="form-label">Class</label>
+            <input type="text" class="form-control" formControlName="class_name" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Div</label>
+            <input type="text" class="form-control" formControlName="div" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Batch</label>
+            <input type="text" class="form-control" formControlName="batch" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Group No.</label>
+            <input type="text" class="form-control" formControlName="group_no" />
+          </div>
+
+          <div *ngFor="let data of stu_data,let i = index">
+            <label>Student {{i + 1}}</label>
+            <div class="mb-3">
+              <label class="form-label">Enrollment No.</label>
+              <!-- <input type="text" class="form-control" [(ngModel)]="stu_data[i].enrollment_no" /> -->
+              <input type="text" class="form-control" [(ngModel)]="stu_data[i].enrollment_no" [ngModelOptions]="{standalone: true}"/>
+              <!-- <input type="text" class="form-control" [(ngModel)]="enrollment_no" formControlName="enrollment_no"/> -->
+            </div>
+            <div class="mb-3">
+              <label for="inputAddress2" class="form-label">Roll No</label>
+              <input type="text" class="form-control" [(ngModel)]="stu_data[i].roll_no" [ngModelOptions]="{standalone: true}"/>
+              <!-- <input type="text" class="form-control" [(ngModel)]="roll_no" formControlName="roll_no"> -->
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control" [(ngModel)]="stu_data[i].name"  [ngModelOptions]="{standalone: true}"/>
+              <!-- <input type="text" class="form-control" [(ngModel)]="name" formControlName="name" /> -->
+            </div>
+          </div>
+          <div class="text-end">
+            <button type="button" class="btn btn-primary btn-sm" (click)="Add(1)"><i class="fa fa-plus" aria-hidden="true"></i></button>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input type="text" class="form-control" formControlName="username" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="text" class="form-control" formControlName="password" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Security Question</label>
+            <select class="form-select" formControlName="security_question">
+              <option selected value="">Choose...</option>
+              <option value="Favourite Food">Favourite Food</option>
+              <option value="Favourite City">Favourite City</option>
+              <option value="Favourite Animal">Favourite Animal</option>
+            </select>
+            <input type="text" class="form-control mt-2" formControlName="security_question_ans" />
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="reset" class="clear-btn">Clear Form</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

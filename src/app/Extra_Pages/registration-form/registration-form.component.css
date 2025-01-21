@@ -1,0 +1,11 @@
+/* .header-image {
+    background-image: url('../../../assets/img/photos/clg.jpg');
+    background-size: contain;
+    width: 100%;
+  } */
+   .clear-btn{
+    float: inline-end;
+    background: none;
+    border: none;
+    color: #3b7ddd;
+   }

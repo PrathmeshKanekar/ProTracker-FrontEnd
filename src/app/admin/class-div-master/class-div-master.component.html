@@ -1,0 +1,180 @@
+<nav class="navbar navbar-light bg-light m-2">
+  <h1 class="h2 ps-1 page-title"><strong>Class Masters</strong></h1>
+</nav>
+<main class="content">
+  <div class="row p-3 bg-white">
+    <!-- Class Table -->
+    <div class="col-md-4">
+      <div class="text-end mb-3">
+        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#class"><i
+            class="fa fa-plus" aria-hidden="true"></i><span class="ps-2">Add Class</span></button>
+
+      </div>
+      <table class="table table-bordered table-hover border-dark ">
+        <thead>
+          <tr>
+            <th style="width:100px;">Action</th>
+            <th>Sr.No</th>
+            <th>Class</th>
+            <th>Status</th>
+          </tr>
+          <tr *ngFor="let data of class_list; let i = index;">
+            <td>
+              <button class="btn btn-danger btn-sm" (click)="data_delete('class',data.id)">delete</button>
+              <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#class"(click)="edit('class',data)">edit</button>
+            </td>
+            <td>{{i+1}}</td>
+            <td>{{data.class_name}}</td>
+            <td>
+              <button type="button" *ngIf="data.flag==='active'" class="btn btn-danger" (click)="status('class',data,'D')">Deactive</button>
+              <button type="button" *ngIf="data.flag==='deactive'" class="btn btn-success" (click)="status('class',data,'A')">Active</button>
+            </td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+    <!-- Div Table -->
+    <div class="col-md-4">
+      <div class="text-end mb-3">
+        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#div"><i
+            class="fa fa-plus" aria-hidden="true"></i><span class="ps-2">Add Div</span></button>
+
+      </div>
+      <table class="table table-bordered table-hover border-dark ">
+        <thead>
+          <tr>
+            <th style="width:100px;">Action</th>
+            <th>Sr.No</th>
+            <th>Div</th>
+            <th>Status</th>
+          </tr>
+          <tr *ngFor="let data of div_list; let i = index;">
+            <td>
+              <button class="btn btn-danger btn-sm" (click)="data_delete('div',data.id)">delete</button>
+              <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#div" (click)="edit('div',data)">edit</button>
+            </td>
+            <td>{{i+1}}</td>
+            <td>{{data.div_name}}</td>
+            <td>
+              <button type="button" *ngIf="data.flag==='active'" class="btn btn-danger" (click)="status('div',data,'D')">Deactive</button>
+              <button type="button" *ngIf="data.flag==='deactive'" class="btn btn-success" (click)="status('div',data,'A')">Active</button>
+            </td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+    <!-- Batch Table -->
+    <div class="col-md-4">
+      <div class="text-end mb-3">
+        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#batch"><i
+            class="fa fa-plus" aria-hidden="true"></i><span class="ps-2">Add Batch</span></button>
+
+      </div>
+      <table class="table table-bordered table-hover border-dark ">
+        <thead>
+          <tr>
+            <th style="width:100px;">Action</th>
+            <th>Sr.No</th>
+            <th>Batch</th>
+            <th>Status</th>
+          </tr>
+          <tr *ngFor="let data of batch_list; let i = index;">
+            <td>
+              <button class="btn btn-danger btn-sm" (click)="data_delete('batch',data.id)">delete</button>
+              <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#batch" (click)="edit('batch',data)">edit</button>
+            </td>
+            <td>{{i+1}}</td>
+            <td>{{data.batch_name}}</td>
+            <td>
+              <button type="button" *ngIf="data.flag==='active'" class="btn btn-danger" (click)="status('batch',data,'D')">Deactive</button>
+              <button type="button" *ngIf="data.flag==='deactive'" class="btn btn-success" (click)="status('batch',data,'A')">Active</button>
+            </td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+</main>
+
+<!-- Class modal -->
+<div class="modal fade" id="class" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <form action="" [formGroup]="classdata" (ngSubmit)="class_submit(classdata.value)">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fw-bold">Add Class</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body m-2 p-3 bg-white">
+            <div class="mb-3">
+              <label class="form-label">Class</label>
+              <input type="text" class="form-control" formControlName="class_name"/>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="reset" class="btn btn-secondary">Clear</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="!classdata.valid">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- Div modal -->
+<div class="modal fade" id="div" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <form action="" [formGroup]="divdata" (ngSubmit)="div_submit(divdata.value)">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fw-bold">Add Div</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body m-2 p-3 bg-white">
+            <div class="mb-3">
+              <label class="form-label">Div</label>
+              <input type="text" class="form-control" formControlName="div_name"/>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="reset" class="btn btn-secondary">Clear</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="!divdata.valid">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- Batch modal -->
+<div class="modal fade" id="batch" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <form action="" [formGroup]="batchdata" (ngSubmit)="batch_submit(batchdata.value)">
+
+      <div class="modal-content">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fw-bold">Add Batch</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body m-2 p-3 bg-white">
+              <div class="mb-3 ">
+                <label class="form-label">Batch</label>
+                <input type="text" class="form-control" formControlName="batch_name"/>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            <button type="reset" class="btn btn-secondary">Clear</button>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="!batchdata.valid">Save</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

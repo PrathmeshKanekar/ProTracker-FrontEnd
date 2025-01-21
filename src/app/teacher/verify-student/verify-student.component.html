@@ -1,0 +1,91 @@
+<nav class="navbar navbar-light bg-light m-2">
+  <h1 class="h2 ps-1 page-title"><strong>Verify Student</strong></h1>
+</nav>
+<main class="content">
+  <div class="row p-3 bg-white">
+    <!-- <div class="col-md-4">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-control" formControlName="businessname" />
+        </div> -->
+    <div class="col-md-12">
+      <div class="text-end mb-3">
+        <!-- <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target=".teachers" (click)="add_teacher()">
+            <i class="fa fa-plus" aria-hidden="true"></i><span class="ps-2">Add Teacher</span>
+          </button> -->
+      </div>
+      <div class="row justify-content-end align-items-center mb-2">
+        <div class="col-md-3">
+          <div class="d-flex align-items-center">
+            <label class="form-label me-2">Sort:</label>
+            <select [(ngModel)]="flag" (change)="changeFlag($event)" class="form-select form-select-sm">
+              <option value="P" selected>Pending</option>
+              <option value="Y">Verified</option>
+              <option value="R">Rejected</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <table class="table table-bordered border-dark shadow-lg p-3 mb-5">
+        <thead>
+          <tr>
+            <th>Sr.No</th>
+            <th>Enrollment No</th>
+            <th>Roll No</th>
+            <th>Name</th>
+            <th>Class</th>
+            <th>Div</th>
+            <th>Batch</th>
+            <th>Group No</th>
+            <th>Username</th>
+            <th style="width: 100px">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let data of students; let i = index">
+            <!-- Loop through students -->
+            <tr *ngFor="let student of data.students; let j = index">
+              <!-- Only show Sr.No in the first row -->
+              <td *ngIf="j === 0" [attr.rowspan]="data.students.length">{{ i + 1 }}</td>
+              
+              <!-- Enrollment No, Roll No, Name displayed in each row -->
+              <td>{{ student.enrollment_no }}</td>
+              <td>{{ student.roll_no }}</td>
+              <td>{{ student.name }}</td>
+      
+              <!-- Common fields are shown only in the first row and spanned across multiple rows -->
+              <td *ngIf="j === 0" [attr.rowspan]="data.students.length">{{ student.class_name }}</td>
+              <td *ngIf="j === 0" [attr.rowspan]="data.students.length">{{ student.div }}</td>
+              <td *ngIf="j === 0" [attr.rowspan]="data.students.length">{{ student.batch }}</td>
+              <td *ngIf="j === 0" [attr.rowspan]="data.students.length">{{ student.group_no }}</td>
+              <td *ngIf="j === 0" [attr.rowspan]="data.students.length">{{ data.login.username }}</td>
+      
+              <!-- Action buttons only for the first student in the group -->
+              <td *ngIf="j === 0" [attr.rowspan]="data.students.length">
+                <div *ngIf="data.login.flag === 'P'">
+                  <button type="button" class="btn btn-sm btn-danger ms-2" title="Reject" (click)="Verify_Status(data.login.id, 'R')">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-success ms-2" title="Verify" (click)="Verify_Status(data.login.id, 'Y')">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div *ngIf="data.login.flag === 'R'">
+                  <button type="button" class="btn btn-danger ms-2" title="Rejected">
+                    <i class="fa fa-window-close-o" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div *ngIf="data.login.flag === 'Y'">
+                  <button type="button" class="btn btn-success ms-2" title="Verified">
+                    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+      
+    </div>
+  </div>
+</main>

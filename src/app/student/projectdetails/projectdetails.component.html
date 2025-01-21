@@ -1,0 +1,42 @@
+<nav class="navbar navbar-light bg-light m-2">
+  <h1 class="h2 ps-1 page-title"><strong>Upload Project Details</strong></h1>
+</nav>
+<main class="content">
+  <div class="row p-3 bg-white">
+    <form [formGroup]="projectdetails" (ngSubmit)="submit(projectdetails.value)">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label">Group No</label>
+          <input type="number" class="form-control" placeholder="Enter Group No" formControlName="group_no">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Project Name</label>
+          <input type="text" class="form-control" placeholder="Enter Project Name" formControlName="project_name">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Upload a Image</label>
+          <input type="file" class="form-control" placeholder="Select file" (input)="handleFileSelect($event)" formControlName="image_data">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Proposed System</label>
+          <textarea class="form-control" rows="2" placeholder="Proposed System" formControlName="details"></textarea>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" rows="2" placeholder="Description" formControlName="details"></textarea>
+        </div>
+
+        <div class="col-md-12">
+          <button class="btn btn-secondary ">Clear</button>
+          <button type="submit" class="btn btn-primary ms-2 ">Save</button>
+        </div>
+
+
+      </div>
+
+
+    </form>
+  </div>
+</main>
